@@ -9,7 +9,8 @@
         </div>
 
         <div class="header-right">
-          <a href="../../documents/html_mock/registerAdmin.html">
+          <!-- <a href="../../documents/html_mock/registerAdmin.html"> -->
+          <a href="../views/registerAdmin.vue">
             管理者登録
           </a>
           <a href="../../documents/html_mock/login.html">
