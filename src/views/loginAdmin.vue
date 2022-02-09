@@ -1,20 +1,5 @@
 <template>
   <div>
-    <header>
-      <div class="container">
-        <div class="header">
-          <div class="header-left">
-            <a href="login.html">
-              <img class="logo" src="img/header_logo.png" />
-            </a>
-          </div>
-
-          <div class="header-right">
-            <a href="registerAdmin.html">管理者登録</a>
-          </div>
-        </div>
-      </div>
-    </header>
     <div class="top-wrapper">
       <div class="container">
         <div class="row login-page">
@@ -74,14 +59,21 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
 @Component
-export default class XXXComponent extends Vue {
+export default class LoginAdmin extends Vue {
   private errorMessage = "";
   private mailAddress = "";
   private password = "";
 
-  loginAdmin(): void {
-    this.$router.push("/registerAdmin");
+  async loginAdmin(): Promise<void> {
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/login"
+    );
+    console.dir(JSON.stringify(response));
+    if (response.data === "true") {
+      this.$router.push("/registerAdmin");
+    } else this.errorMessage = response.data.message;
   }
 }
 </script>
