@@ -10,12 +10,12 @@ const routes: Array<RouteConfig> = [
   //   component: () => import("../components/LoginAdmin.vue"),
   // },
   {
-    path: "/employeelist",
+    path: "/employeeList",
     component: () => import("../views/EmployeeList.vue"),
   },
   {
     path: "/loginAdmin",
-    component: () => import("../views/loginAdmin.vue"),
+    component: () => import("../views/LoginAdmin.vue"),
   },
   {
     path: "/registerAdmin",

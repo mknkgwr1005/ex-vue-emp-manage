@@ -20,7 +20,7 @@ export default new Vuex.Store({
     async getEmployeeList(context) {
       // APIの呼び出し
       const response = await axios.get(
-        "http://153.127.48.168:8080/ex-emp-api/employee.employees"
+        "http://153.127.48.168:8080/ex-emp-api/employee/employees"
       );
       // 受信したJSONファイルの表示：console.dirと文字列化するstringfy
       console.dir("response:" + JSON.stringify(response));
@@ -77,14 +77,17 @@ export default new Vuex.Store({
       return state.employees;
     },
     /**
-     * IDから従業員を検索して返す
+     * IDから従業員情報を検索して返す
      * @param state ― ステート
-     * @returns - ID
+     * @returns - 従業員情報
      */
     // ＩＤから従業員を検索して返す
     getEmployeeByID(state) {
       return (id: number) => {
-        return state.employees.filter((employees) => employees.id === id);
+        const newEmployees = state.employees.filter(
+          (employees) => employees.id === id
+        );
+        return newEmployees[0];
       };
     },
   }, // end getters

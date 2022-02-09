@@ -80,7 +80,9 @@ export default class LoginAdmin extends Vue {
     console.dir(JSON.stringify(response));
     if (response.data.status === "success") {
       this.$router.push("/employeeList");
-    } else this.errorMessage = response.data.message;
+    } else {
+      this.errorMessage = response.data.message;
+    }
   }
 }
 </script>
