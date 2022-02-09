@@ -1,11 +1,15 @@
 /**
- * @remarks 管理者情報を表す部品用のクラス
+ * 管理者情報を表す部品用のクラス.
  */
-export class administrator {
+export class Administrator {
   constructor(
+    // 管理者ID
     private _id: number,
+    // 管理者名前
     private _name: string,
+    // 管理者メールアドレス
     private _mailAddress: string,
+    // 管理者パスワード
     private _password: string
   ) {}
 

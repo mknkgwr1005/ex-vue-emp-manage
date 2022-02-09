@@ -1,19 +1,31 @@
 /**
- * @remarks 従業員情報を表す部品用のクラス
+ *  従業員情報を表す部品用のクラス.
  */
-export class employee {
+export class Employee {
   constructor(
+    // 従業員ID
     private _id: number,
+    // 従業員名前
     private _name: string,
+    // 従業員画像
     private _image: string,
+    // 従業員性別
     private _gender: string,
+    // 従業員入社日
     private _hireDate: Date,
+    // 従業員メールアドレス
     private _mailAddress: string,
+    // 従業員郵便番号
     private _zipCode: string,
+    // 従業員住所
     private _address: string,
+    // 従業員電話番号
     private _telephone: string,
+    // 従業員給料
     private _salary: number,
+    // 従業員特性
     private _characteristics: string,
+    //従業員扶養人数
     private _dependentsCount: number
   ) {}
 
