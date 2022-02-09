@@ -62,8 +62,11 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 @Component
 export default class LoginAdmin extends Vue {
+  //   エラーメッセージ
   private errorMessage = "";
+  //   メールアドレス
   private mailAddress = "";
+  //   パスワード
   private password = "";
 
   async loginAdmin(): Promise<void> {
