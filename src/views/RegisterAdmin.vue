@@ -1,27 +1,12 @@
-/** 管理者登録画面です. */
 <template>
   <div>
     <!-- start of template -->
-    <header>
-      <div class="container">
-        <div class="header">
-          <div class="header-left">
-            <a href="login.html">
-              <img class="logo" src="img/header_logo.png" />
-            </a>
-          </div>
-          <div class="header-right">
-            <a href="registerAdmin.html">管理者登録</a>
-          </div>
-        </div>
-      </div>
-    </header>
     <div class="top-wrapper">
       <div class="container">
         <div class="row register-page">
-          /** @param エラーメッセージの表示 */
+          <!-- エラーメッセージの表示  -->
           <div class="error">{{ errorMessage }}</div>
-          /** @remarks 以下従業員情報の登録 */
+          <!--  以下従業員情報の登録  -->
           <form class="col s12" id="reg-form">
             <div class="row">
               <div class="input-field col s6">
@@ -70,7 +55,7 @@
                 <label for="password">パスワード</label>
               </div>
             </div>
-            /** @remarks 従業員情報入力の終了*/
+            <!-- 従業員情報入力の終了 -->
             <div class="row">
               <div class="input-field col s6">
                 <button
@@ -87,13 +72,6 @@
         </div>
       </div>
     </div>
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-center">©️ xxx Inc.</div>
-        </div>
-      </div>
-    </footer>
     <!-- end of template -->
   </div>
 </template>
@@ -102,6 +80,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 @Component
+/**  */
 export default class registerAdmin extends Vue {
   private lastName = "";
   private firstName = "";
@@ -110,8 +89,13 @@ export default class registerAdmin extends Vue {
   private errorMessage = "";
 
   async registerAdmin(): Promise<void> {
-    const response = await axios.get(
-      "http://153.127.48.168:8080/ex-emp-api/insert"
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/insert",
+      {
+        name: this.lastName + this.firstName,
+        mailAddress: this.mailAddress,
+        password: this.password,
+      }
     );
     console.dir(JSON.stringify(response));
     if (response.data.status === "success") {
@@ -123,4 +107,8 @@ export default class registerAdmin extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.register-page {
+  width: 600px;
+}
+</style>

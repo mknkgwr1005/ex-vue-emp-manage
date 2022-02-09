@@ -8,28 +8,35 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
-    /** @param 従業員の合計人数 */
+    // 従業員の合計人数
     totalEmployeeCount: 0,
-    /** @param Employeeクラスのデータ */
+    // 従業員一覧情報
     employees: new Array<Employee>(),
   }, // end state
   actions: {
-    /** @paran 従業員情報のＡＰＩからの取得 */
+    /** 従業員一覧情報をWebAPIから受け取ってmutationを呼び出す.
+     * @param context - コンテキスト
+     */
     async getEmployeeList(context) {
-      /**  @remarks APIの呼び出し*/
+      // APIの呼び出し
       const response = await axios.get(
         "http://153.127.48.168:8080/ex-emp-api/employee.employees"
       );
-      /** @remarks 受信したJSONファイルの表示：console.dirと文字列化するstringfy*/
+      // 受信したJSONファイルの表示：console.dirと文字列化するstringfy
       console.dir("response:" + JSON.stringify(response));
-      /**@remarks 受信したJSOＮのdataにあるデータをpayload変数に格のする*/
+      // 受信したJSOＮのdataにあるデータをpayload変数に格のする
       const payload = response.data;
-      /**  @remarks mutationの呼び出し*/
+      // mutationの呼び出し
       context.commit("showEmployeeList", payload);
     },
   }, // end actions
   mutations: {
-    /**@param actionsで受け取った従業員情報を、stateに渡す */
+    /**
+     * 従業員一覧を取得してstateに返す.
+     *
+     * @param state - ステート
+     * @param payload - 従業員情報
+     */
     showEmployeeList(state, payload): void {
       state.totalEmployeeCount = payload.totalEmployeeCount;
       for (const employee of payload.employees) {
@@ -53,17 +60,32 @@ export default new Vuex.Store({
     },
   }, // end mutations
   getters: {
-    /**@param 従業員数を返す */
+    /**
+     * 従業員数を返す.
+     * @param state - ステート
+     * @returns  - 従業員数
+     */
     getEmployeeCount(state): number {
       return state.totalEmployeeCount;
     },
-    /**@param 従業員一覧を返す */
+    /**
+     * 従業員一覧を返す.
+     * @param state - ステート
+     * @returns ― 従業員情報
+     */
     getEmployees(state): Array<Employee> {
       return state.employees;
     },
-    /**@param ＩＤから従業員を検索して返す */
-    getEmployeeByID(state): number {
-      return Number(state.employees[0]);
+    /**
+     * IDから従業員を検索して返す
+     * @param state ― ステート
+     * @returns - ID
+     */
+    // ＩＤから従業員を検索して返す
+    getEmployeeByID(state) {
+      return (id: number) => {
+        return state.employees.filter((employees) => employees.id === id);
+      };
     },
   }, // end getters
   modules: {}, // end modules

@@ -10,9 +10,9 @@
 
         <div class="header-right">
           <!-- <a href="../../documents/html_mock/registerAdmin.html"> -->
-          <a href="../views/registerAdmin.vue">
+          <router-link to="/registerAdmin">
             管理者登録
-          </a>
+          </router-link>
           <a href="../../documents/html_mock/login.html">
             <i class="fas fa-sign-in-alt"></i>ログイン
           </a>
