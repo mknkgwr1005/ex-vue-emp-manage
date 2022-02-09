@@ -80,9 +80,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 @Component
-/**
- * 管理者登録をするクラスです.
- */
 export default class registerAdmin extends Vue {
   // 姓
   private lastName = "";
@@ -95,6 +92,9 @@ export default class registerAdmin extends Vue {
   // エラーメッセージ
   private errorMessage = "";
 
+  /**
+   * 管理者情報を登録する.
+   */
   async registerAdmin(): Promise<void> {
     const response = await axios.post(
       "http://153.127.48.168:8080/ex-emp-api/insert",
