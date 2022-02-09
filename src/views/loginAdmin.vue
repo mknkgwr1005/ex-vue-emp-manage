@@ -78,4 +78,8 @@ export default class LoginAdmin extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.login-page {
+  width: 600px;
+}
+</style>
