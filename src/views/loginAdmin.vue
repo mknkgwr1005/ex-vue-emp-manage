@@ -75,8 +75,8 @@ export default class LoginAdmin extends Vue {
       }
     );
     console.dir(JSON.stringify(response));
-    if (response.data === "success") {
-      this.$router.push("/registerAdmin");
+    if (response.data.status === "success") {
+      this.$router.push("/employeeList");
     } else this.errorMessage = response.data.message;
   }
 }
