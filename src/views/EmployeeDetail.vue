@@ -79,7 +79,7 @@
                         required
                       />
 
-                      <label for="dependentsCount2">扶養人数</label>
+                      <!-- <label for="dependentsCount2">扶養人数</label> -->
                     </div>
                   </td>
                 </tr>
@@ -128,6 +128,11 @@ export default class EmployeeDetail extends Vue {
   //   従業員扶養人数
   private currentDependentsCount = 0;
 
+  /**
+   * ページ遷移と同時に、VueストアのGetter経由で受け取った
+   * リクエストパラメータのIDから1件の従業員情報を取得する.
+   */
+
   created(): void {
     //   送られてきたリクエストパラメータIDをnumberに変換して取得する
     const employeeId = Number(this.$route.params.id);
@@ -142,6 +147,9 @@ export default class EmployeeDetail extends Vue {
     this.currentDependentsCount = this.currentEmployee.dependentsCount;
   }
 
+  /**
+   * ボタン経由で受け取った扶養人数をAPIに送る.
+   */
   async update(): Promise<void> {
     const response = await axios.post(
       "http://153.127.48.168:8080/ex-emp-api/employee/update",
@@ -152,10 +160,11 @@ export default class EmployeeDetail extends Vue {
     );
     console.dir(response, JSON.stringify(response));
 
-    if (response.data === "success") {
+    if (response.data.status === "success") {
       this.$router.push("/employeeList");
     } else {
-      this.errorMessage = response.data.message;
+      this.errorMessage =
+        "更新できませんでした。" + " " + response.data.message;
     }
   }
   //   update(): void {
