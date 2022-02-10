@@ -10,6 +10,10 @@ const routes: Array<RouteConfig> = [
   //   component: () => import("../components/LoginAdmin.vue"),
   // },
   {
+    path: "/logoutAdmin",
+    component: () => import("../views/LogoutAdmin.vue"),
+  },
+  {
     path: "/employeeDetail/:id",
     component: () => import("../views/EmployeeDetail.vue"),
   },
