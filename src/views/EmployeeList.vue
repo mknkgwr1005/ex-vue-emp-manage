@@ -47,12 +47,18 @@ export default class EmployeeList extends Vue {
 
   /**
    * 非同期で取得したVuexストア内の従業員数を取得し返す.
+   *
+   * @returns 従業員数
    */
   get employeeCount(): number {
     return this.$store.getters.getEmployeeCount;
   }
 
-  /**非同期で取得したVuexストア内の従業員一覧を取得し返す */
+  /**
+   * 非同期で取得したVuexストア内の従業員一覧を取得し返す.
+   *
+   * @returns 従業員一覧
+   */
   get employees(): Array<Employee> {
     return this.$store.getters.getEmployees;
   }
